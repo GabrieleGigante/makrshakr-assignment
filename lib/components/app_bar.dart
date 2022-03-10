@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 PreferredSizeWidget appBar(BuildContext context, {bool showLeading = false}) {
   return AppBar(
     automaticallyImplyLeading: false,
+    centerTitle: true,
     leading: showLeading
         ? IconButton(
             onPressed: () {
