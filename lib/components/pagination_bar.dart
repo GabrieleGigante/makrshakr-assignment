@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -62,8 +60,7 @@ class PaginationBar extends StatelessWidget {
                 return InkWell(
                   onTap: () {
                     provider.getFacts(int.parse(link.label));
-                    Navigator.pushNamed(
-                        context, ModalRoute.of(context)!.settings.name! + link.label);
+                    Navigator.pushNamed(context, '/${link.label}/');
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(6.0),
