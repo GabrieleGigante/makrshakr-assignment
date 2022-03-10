@@ -41,19 +41,19 @@ class PaginationBar extends StatelessWidget {
                 }
                 if (link.active) {
                   return Padding(
-                    padding: const EdgeInsets.all(6.0),
+                    padding: const EdgeInsets.all(5.0),
                     child: Text(
                       link.label,
-                      style: TextStyle(color: Colors.red, fontSize: 11),
+                      style: TextStyle(color: Theme.of(context).primaryColor, fontSize: 11),
                     ),
                   );
                 }
                 if (link.url.isEmpty) {
                   return Padding(
-                    padding: const EdgeInsets.all(6.0),
+                    padding: const EdgeInsets.all(5.0),
                     child: Text(
                       link.label,
-                      style: TextStyle(fontSize: 11),
+                      style: Theme.of(context).textTheme.labelSmall,
                     ),
                   );
                 }
@@ -63,10 +63,10 @@ class PaginationBar extends StatelessWidget {
                     Navigator.pushNamed(context, '/${link.label}/');
                   },
                   child: Padding(
-                    padding: const EdgeInsets.all(6.0),
+                    padding: const EdgeInsets.all(5.0),
                     child: Text(
                       link.label,
-                      style: TextStyle(fontSize: 11),
+                      style: Theme.of(context).textTheme.labelSmall,
                     ),
                   ),
                 );

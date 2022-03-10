@@ -27,6 +27,7 @@ class FactCard extends StatelessWidget {
                     children: [
                       Text(
                         fact.title,
+                        style: Theme.of(context).textTheme.titleSmall,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),

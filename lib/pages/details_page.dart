@@ -29,7 +29,11 @@ class DetailsPage extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Text(fact.title),
+              child: Text(
+                fact.title,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
             )
           ],
         );

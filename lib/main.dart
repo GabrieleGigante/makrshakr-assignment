@@ -1,3 +1,4 @@
+import 'package:assignment/consts.dart';
 import 'package:assignment/pages/unknown_route.dart';
 import 'package:assignment/providers/facts_provider.dart';
 import 'package:assignment/router.dart';
@@ -20,9 +21,7 @@ class MyApp extends StatelessWidget {
           FactsProvider(int.tryParse(ModalRoute.of(context)?.settings.name?.split('/')[1] ?? '1')),
       child: MaterialApp(
         title: 'Makr Shakr assignment',
-        theme: ThemeData(
-          primarySwatch: Colors.red,
-        ),
+        theme: catfactsTheme(context),
         onGenerateRoute: router,
         onUnknownRoute: (settings) =>
             MaterialPageRoute(builder: (_) => UnknownRoute(route: settings.name ?? '')),
