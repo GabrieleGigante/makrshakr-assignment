@@ -1,11 +1,10 @@
-import 'dart:io';
-
-import 'package:assignment/models/fact.dart';
 import 'package:assignment/providers/facts_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../components/fact_card.dart';
+import '../components/pagination_bar.dart';
+import '../models/fact.dart';
 
 class ListPage extends StatelessWidget {
   final int pageNumber;
@@ -38,49 +37,13 @@ class ListPage extends StatelessWidget {
         return ListView.separated(
           padding: const EdgeInsets.symmetric(vertical: 8),
           itemCount: facts.length,
-          itemBuilder: (BuildContext context, int i) => FactCard(i, onPressed: () {}),
+          itemBuilder: (BuildContext context, int i) =>
+              FactCard(facts[i], onPressed: () => Navigator.pushNamed(context, '/$pageNumber/$i')),
           separatorBuilder: (BuildContext context, int i) => const SizedBox(height: 6),
           // children: [for (int i = 0; i < facts.length; i++) FactCard(i, onPressed: () {})],
         );
       }),
-      bottomNavigationBar: provider.isLoading
-          ? null
-          : SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    if (pageNumber > 1)
-                      TextButton(
-                        onPressed: () async {
-                          provider.getFacts(pageNumber - 1);
-                          Navigator.pushReplacementNamed(
-                            context,
-                            '/${pageNumber - 1}/',
-                            arguments: 'back',
-                          );
-                        },
-                        child: const Icon(Icons.arrow_back_ios),
-                      )
-                    else
-                      const SizedBox(width: 60),
-                    Text('$pageNumber'),
-                    TextButton(
-                      onPressed: () async {
-                        provider.getFacts(pageNumber + 1);
-                        Navigator.pushReplacementNamed(
-                          context,
-                          '/${pageNumber + 1}/',
-                          arguments: 'forward',
-                        );
-                      },
-                      child: const Icon(Icons.arrow_forward_ios),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+      bottomNavigationBar: provider.isLoading ? null : const PaginationBar(),
     );
   }
 }

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:assignment/pages/unknown_route.dart';
 import 'package:assignment/providers/facts_provider.dart';
 import 'package:assignment/router.dart';
@@ -24,6 +22,8 @@ class MyApp extends StatelessWidget {
         title: 'Makr Shakr assignment',
         theme: ThemeData(
           primarySwatch: Colors.red,
+          // textButtonTheme:
+          //     TextButtonThemeData(style: TextButton.styleFrom(maximumSize: Size.fromWidth(35))),
         ),
         onGenerateRoute: router,
         onUnknownRoute: (settings) =>

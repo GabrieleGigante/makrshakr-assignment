@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:assignment/pages/list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
