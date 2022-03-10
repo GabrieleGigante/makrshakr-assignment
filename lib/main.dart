@@ -22,8 +22,6 @@ class MyApp extends StatelessWidget {
         title: 'Makr Shakr assignment',
         theme: ThemeData(
           primarySwatch: Colors.red,
-          // textButtonTheme:
-          //     TextButtonThemeData(style: TextButton.styleFrom(maximumSize: Size.fromWidth(35))),
         ),
         onGenerateRoute: router,
         onUnknownRoute: (settings) =>

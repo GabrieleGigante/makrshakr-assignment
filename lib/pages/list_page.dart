@@ -1,5 +1,4 @@
 import 'package:assignment/components/app_bar.dart';
-import 'package:assignment/pages/details_page.dart';
 import 'package:assignment/providers/facts_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -30,7 +29,6 @@ class ListPage extends StatelessWidget {
           itemBuilder: (BuildContext context, int i) =>
               FactCard(facts[i], onPressed: () => Navigator.pushNamed(context, '/$pageNumber/$i/')),
           separatorBuilder: (BuildContext context, int i) => const SizedBox(height: 6),
-          // children: [for (int i = 0; i < facts.length; i++) FactCard(i, onPressed: () {})],
         );
       }),
       bottomNavigationBar: provider.isLoading ? null : const PaginationBar(),
