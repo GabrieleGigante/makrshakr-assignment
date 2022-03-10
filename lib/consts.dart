@@ -9,7 +9,7 @@ ThemeData catfactsTheme(context) => ThemeData(
         titleSmall: TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
         bodyLarge: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
         bodyMedium: TextStyle(fontSize: 12),
-        labelSmall: TextStyle(fontSize: 10),
+        labelSmall: TextStyle(fontSize: 11),
       ),
       appBarTheme: const AppBarTheme(),
     );
