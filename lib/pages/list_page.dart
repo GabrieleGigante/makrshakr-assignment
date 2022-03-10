@@ -1,3 +1,5 @@
+import 'package:assignment/components/app_bar.dart';
+import 'package:assignment/pages/details_page.dart';
 import 'package:assignment/providers/facts_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,19 +18,7 @@ class ListPage extends StatelessWidget {
     final List<Fact> facts = provider.facts;
 
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Image.asset(
-              './res/appbarCat.png',
-              height: 42,
-            ),
-            const Text(' CatFacts'),
-          ],
-        ),
-      ),
+      appBar: appBar(context),
       body: Builder(builder: (context) {
         if (provider.isLoading) {
           return const Center(child: CircularProgressIndicator());
@@ -38,7 +28,7 @@ class ListPage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 8),
           itemCount: facts.length,
           itemBuilder: (BuildContext context, int i) =>
-              FactCard(facts[i], onPressed: () => Navigator.pushNamed(context, '/$pageNumber/$i')),
+              FactCard(facts[i], onPressed: () => Navigator.pushNamed(context, '/$pageNumber/$i/')),
           separatorBuilder: (BuildContext context, int i) => const SizedBox(height: 6),
           // children: [for (int i = 0; i < facts.length; i++) FactCard(i, onPressed: () {})],
         );

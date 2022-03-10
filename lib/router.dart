@@ -1,3 +1,4 @@
+import 'package:assignment/pages/details_page.dart';
 import 'package:assignment/pages/list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -23,6 +24,21 @@ Route<MaterialPageRoute>? router(RouteSettings settings) {
           pageNumber: pageNumber,
         ),
         settings: RouteSettings(name: '/$pageNumber/'));
+  }
+
+  // details route
+  if (uri.pathSegments.length == 3 &&
+      int.tryParse(uri.pathSegments[0]) != null &&
+      int.tryParse(uri.pathSegments[1]) != null) {
+    int pageNumber = int.parse(uri.pathSegments[0]);
+    int postNumber = int.parse(uri.pathSegments[1]);
+    return PageTransition(
+        type: PageTransitionType.leftToRight,
+        child: DetailsPage(
+          pageNumber: pageNumber,
+          postNumber: postNumber,
+        ),
+        settings: RouteSettings(name: '/$pageNumber/$postNumber/'));
   }
   return null;
 }

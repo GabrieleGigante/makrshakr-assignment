@@ -13,9 +13,10 @@ class FactCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 4.0),
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        child: InkWell(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: InkWell(
+            onTap: () => onPressed(),
             child: Row(
               children: [
                 Image.network(fact.image),
