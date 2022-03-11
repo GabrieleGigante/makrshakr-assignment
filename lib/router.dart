@@ -10,11 +10,11 @@ Route<MaterialPageRoute>? router(RouteSettings settings) {
   if (uri.path == '/') {
     return MaterialPageRoute(
       builder: (_) => const ListPage(pageNumber: 1),
-      settings: const RouteSettings(name: '/1/'),
+      settings: const RouteSettings(name: '/1'),
     );
   }
   // listview route
-  if (uri.pathSegments.length == 2 && int.tryParse(uri.pathSegments[0]) != null) {
+  if (uri.pathSegments.length == 1 && int.tryParse(uri.pathSegments[0]) != null) {
     int pageNumber = int.parse(uri.pathSegments[0]);
     return PageTransition(
         type: settings.arguments.toString() == 'back'
@@ -23,11 +23,11 @@ Route<MaterialPageRoute>? router(RouteSettings settings) {
         child: ListPage(
           pageNumber: pageNumber,
         ),
-        settings: RouteSettings(name: '/$pageNumber/'));
+        settings: RouteSettings(name: '/$pageNumber'));
   }
 
   // details route
-  if (uri.pathSegments.length == 3 &&
+  if (uri.pathSegments.length == 2 &&
       int.tryParse(uri.pathSegments[0]) != null &&
       int.tryParse(uri.pathSegments[1]) != null) {
     int pageNumber = int.parse(uri.pathSegments[0]);
@@ -38,7 +38,7 @@ Route<MaterialPageRoute>? router(RouteSettings settings) {
           pageNumber: pageNumber,
           postNumber: postNumber,
         ),
-        settings: RouteSettings(name: '/$pageNumber/$postNumber/'));
+        settings: RouteSettings(name: '/$pageNumber/$postNumber'));
   }
   return null;
 }

@@ -1,9 +1,11 @@
-import 'package:assignment/components/app_bar.dart';
 import 'package:assignment/providers/facts_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../components/app_bar.dart';
+import '../components/error_widget.dart';
 import '../components/fact_card.dart';
+import '../components/loading_widget.dart';
 import '../components/pagination_bar.dart';
 import '../models/fact.dart';
 
@@ -20,14 +22,16 @@ class ListPage extends StatelessWidget {
       appBar: appBar(context),
       body: Builder(builder: (context) {
         if (provider.isLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return const LoadingWidget();
         }
-        if (provider.error != null) {}
+        if (provider.error != null) {
+          return ErrorComponent(message: provider.error!);
+        }
         return ListView.separated(
           padding: const EdgeInsets.symmetric(vertical: 8),
           itemCount: facts.length,
           itemBuilder: (BuildContext context, int i) =>
-              FactCard(facts[i], onPressed: () => Navigator.pushNamed(context, '/$pageNumber/$i/')),
+              FactCard(facts[i], onPressed: () => Navigator.pushNamed(context, '/$pageNumber/$i')),
           separatorBuilder: (BuildContext context, int i) => const SizedBox(height: 6),
         );
       }),

@@ -42,7 +42,10 @@ class PaginationBar extends StatelessWidget {
                       padding: const EdgeInsets.all(5.0),
                       child: Text(
                         link.label,
-                        style: TextStyle(color: Theme.of(context).primaryColor, fontSize: 11),
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium
+                            ?.apply(color: Theme.of(context).primaryColor),
                       ),
                     );
                   }
@@ -51,20 +54,20 @@ class PaginationBar extends StatelessWidget {
                       padding: const EdgeInsets.all(5.0),
                       child: Text(
                         link.label,
-                        style: Theme.of(context).textTheme.labelSmall,
+                        style: Theme.of(context).textTheme.bodyMedium,
                       ),
                     );
                   }
                   return InkWell(
                     onTap: () {
                       provider.getFacts(int.parse(link.label));
-                      Navigator.pushNamed(context, '/${link.label}/');
+                      Navigator.pushNamed(context, '/${link.label}');
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(5.0),
                       child: Text(
                         link.label,
-                        style: Theme.of(context).textTheme.labelSmall,
+                        style: Theme.of(context).textTheme.bodyMedium,
                       ),
                     ),
                   );

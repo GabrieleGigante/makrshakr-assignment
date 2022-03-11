@@ -17,8 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) =>
-          FactsProvider(int.tryParse(ModalRoute.of(context)?.settings.name?.split('/')[1] ?? '1')),
+      create: (_) => FactsProvider(1),
       child: MaterialApp(
         title: 'Makr Shakr assignment',
         theme: catfactsTheme(context),

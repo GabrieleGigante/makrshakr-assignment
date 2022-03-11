@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:assignment/consts.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -12,9 +14,7 @@ class FactsProvider extends ChangeNotifier {
   late int pageNumber;
   String? error;
 
-  FactsProvider(int? pageNumber) {
-    pageNumber ??= 1;
-    pageNumber = pageNumber;
+  FactsProvider(this.pageNumber) {
     getFacts(pageNumber);
   }
 
@@ -37,7 +37,7 @@ class FactsProvider extends ChangeNotifier {
   //-------
 
   getFacts(int pageNumber) async {
-    this.pageNumber = pageNumber;
+    pageNumber = pageNumber;
     setLoading(true);
     // await Future.delayed(const Duration(seconds: 2), () {});
     try {
@@ -55,15 +55,21 @@ class FactsProvider extends ChangeNotifier {
       for (Map<String, dynamic> link in linkList) {
         links.add(Link.fromMap(link));
       }
+    } on DioError catch (e) {
+      setError(e.message);
     } catch (e) {
       setError(e.toString());
     }
     setLoading(false);
   }
 
-  getFact(int index) {
+  Fact getFact(int index) {
     if (facts.isEmpty) {
       getFacts(pageNumber);
+    }
+    if (index > facts.length - 1) {
+      setError('ERROR 404: post not found');
+      return facts.first;
     }
     return facts[index];
   }
@@ -73,7 +79,7 @@ class FactsProvider extends ChangeNotifier {
     getFacts(newPage);
     Navigator.pushReplacementNamed(
       context,
-      '/$newPage/',
+      '/$newPage',
       arguments: 'back',
     );
   }
@@ -83,7 +89,7 @@ class FactsProvider extends ChangeNotifier {
     getFacts(newPage);
     Navigator.pushReplacementNamed(
       context,
-      '/$newPage/',
+      '/$newPage',
       arguments: 'forward',
     );
   }
