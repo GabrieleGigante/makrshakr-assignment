@@ -37,7 +37,7 @@ class FactsProvider extends ChangeNotifier {
   //-------
 
   getFacts(int pageNumber) async {
-    pageNumber = pageNumber;
+    this.pageNumber = pageNumber;
     setLoading(true);
     // await Future.delayed(const Duration(seconds: 2), () {});
     try {

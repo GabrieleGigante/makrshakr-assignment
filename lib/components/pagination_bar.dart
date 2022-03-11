@@ -60,8 +60,11 @@ class PaginationBar extends StatelessWidget {
                   }
                   return InkWell(
                     onTap: () {
-                      provider.getFacts(int.parse(link.label));
-                      Navigator.pushNamed(context, '/${link.label}');
+                      int newPage = int.parse(link.label);
+                      int currentPage = provider.pageNumber;
+                      provider.getFacts(newPage);
+                      Navigator.pushReplacementNamed(context, '/${link.label}',
+                          arguments: currentPage > newPage ? 'back' : 'forward');
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(5.0),
